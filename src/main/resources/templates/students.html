@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+    <a class="navbar-brand" th:href="@{/students}">Student List Homepage</a>
+
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <h1 class="text-center">Student List:</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/students/new}" class="btn btn-primary btn-sm mb-3">Add Student</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+
+        <thead class="table-dark">
+        <tr>
+            <th>Student ID</th>
+            <th>Student First Name</th>
+            <th>Student Last Name</th>
+            <th>Student Email</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each=" student : ${students}">
+            <th th:utext="${student.id}"></th>
+            <th th:utext="${student.firstName}"></th>
+            <th th:utext="${student.lastName}"></th>
+            <th th:utext="${student.email}"></th>
+            <td>
+                <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>
